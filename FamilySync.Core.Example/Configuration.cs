@@ -1,9 +1,7 @@
-﻿using FamilySync.Core.Example.Models.Entities;
-using FamilySync.Core.Helpers;
-using FamilySync.Core.Persistence;
+﻿using FamilySync.Core.Persistence;
 using FamilySync.Core.Example.Persistence;
 using FamilySync.Core.Example.Services;
-using Microsoft.AspNetCore.Identity;
+using FamilySync.Core.Helpers;
 
 namespace FamilySync.Core.Example;
 

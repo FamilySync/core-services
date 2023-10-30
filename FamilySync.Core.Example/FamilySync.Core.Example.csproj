@@ -16,13 +16,12 @@
     </ItemGroup>
     
     <ItemGroup>
+      <ProjectReference Include="..\FamilySync.Core.Helpers\FamilySync.Core.Helpers.csproj" />
       <ProjectReference Include="..\FamilySync.Core\FamilySync.Core.csproj" />
     </ItemGroup>
     
     <ItemGroup>
       <Folder Include="Migrations\" />
     </ItemGroup>
-    
-    
     
 </Project>

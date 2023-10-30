@@ -4,7 +4,11 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>FamilySync.Core.Helpers</RootNamespace>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>FamilySync.Core.Helpers</Title>
+        <Authors>Nichals Hoberg</Authors>
+        <Description>This package is meant as a helper for all core packages and for services </Description>
+        <PackageProjectUrl>https://github.com/FamilySync/core-services</PackageProjectUrl>
     </PropertyGroup>
 
     <ItemGroup>

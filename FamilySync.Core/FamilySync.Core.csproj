@@ -4,6 +4,11 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>FamilySync.Core</Title>
+        <Authors>Nichlas Hoberg</Authors>
+        <Description>This package adds support for core logic.</Description>
+        <PackageProjectUrl>https://github.com/FamilySync/core-services</PackageProjectUrl>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,11 +27,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\FamilySync.Core.Authentication\FamilySync.Core.Authentication.csproj" />
-        <ProjectReference Include="..\FamilySync.Core.Helpers\FamilySync.Core.Helpers.csproj"/>
-        <ProjectReference Include="..\FamilySync.Core.Persistence\FamilySync.Core.Persistence.csproj"/>
+      <ProjectReference Include="..\FamilySync.Core.Authentication\FamilySync.Core.Authentication.csproj" />
+      <ProjectReference Include="..\FamilySync.Core.Helpers\FamilySync.Core.Helpers.csproj" />
+      <ProjectReference Include="..\FamilySync.Core.Persistence\FamilySync.Core.Persistence.csproj" />
     </ItemGroup>
-
-
-
 </Project>
