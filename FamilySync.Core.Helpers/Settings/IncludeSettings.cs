@@ -1,0 +1,11 @@
+﻿namespace FamilySync.Core.Helpers.Settings;
+
+public class IncludeSettings
+{
+    public bool Mvc { get; set; } = true;
+    public bool Swagger { get; set; } = true;
+    public bool Versioning { get; set; } = true;
+    public bool Authentication { get; set; } = true;
+    public bool Authorization { get; set; } = true;
+
+}
