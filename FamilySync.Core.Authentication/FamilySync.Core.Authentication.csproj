@@ -9,11 +9,16 @@
         <Authors>Nichlas Hoberg</Authors>
         <Description>This package adds support for Authentication logic.</Description>
         <PackageProjectUrl>https://github.com/FamilySync/core-services</PackageProjectUrl>
+        <Version>1.0.5</Version>
     </PropertyGroup>
     
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.13"/>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.13"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Identity\" />
     </ItemGroup>
     
 </Project>

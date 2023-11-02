@@ -8,10 +8,10 @@ public class AccessLevelRequirement : IAuthorizationRequirement
 {
     public AccessLevelRequirement(string identity, AccessLevel level)
     {
-        Identities = identity.GetIdentityHierarchy().ToArray();
-        Level = (int)level;
+        this.Identities = identity.GetIdentityHierarchy().ToArray();
+        this.Level = (int)level;
     }
     
-    public string[] Identities { get; }
-    public int Level { get; }
+    public string[] Identities { get; init; }
+    public int Level { get; init; }
 }

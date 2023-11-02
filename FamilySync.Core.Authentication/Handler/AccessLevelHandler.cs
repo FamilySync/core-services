@@ -17,7 +17,7 @@ public class AccessLevelHandler : AuthorizationHandler<AccessLevelRequirement>
         return Task.CompletedTask;
     }
     
-    public bool Validate(AccessLevelRequirement requirement, IEnumerable<Claim> claims)
+    public static bool Validate(AccessLevelRequirement requirement, IEnumerable<Claim> claims)
     {
         foreach (var identity in requirement.Identities)
         {

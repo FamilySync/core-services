@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 
@@ -16,14 +17,14 @@ public static class ServiceCollectionExtension
 {
     public static IServiceCollection InitializeService(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<IncludeSettings>(configuration.GetRequiredSection("Settings:Authentication"));
+        services.Configure<AuthenticationSettings>(configuration.GetRequiredSection("Settings:Authentication"));
         services.Configure<ServiceSettings>(configuration.GetRequiredSection("Settings:Service"));
         services.Configure<IncludeSettings>(configuration.GetSection("Settings:Include"));
 
         var settings = configuration.GetRequiredSection("Settings")
             .Get<ConfigurationSettings>()!;
 
-        if(settings.Include.Versioning)
+        if (settings.Include.Versioning)
         {
             services.AddApiVersioning(options =>
             {
@@ -38,8 +39,8 @@ public static class ServiceCollectionExtension
                 options.GroupNameFormat = "'v'VVV";
             });
         }
-        
-        if(settings.Include.Authentication)
+
+        if (settings.Include.Authentication)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.Authentication.Secret));
             services.AddCustomAuthorization(key);
@@ -60,13 +61,36 @@ public static class ServiceCollectionExtension
         {
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigurationSettings>();
 
-            services.AddSwaggerGen();
-            
+            services.AddSwaggerGen(options =>
+            {
+                options.UseAllOfToExtendReferenceSchemas();
+                options.CustomOperationIds(o => $"{o.ActionDescriptor.RouteValues["action"]}");
+
+                const string securityDefinition = "Bearer";
+
+                var scheme = new OpenApiSecurityScheme
+                {
+                    Description = $"Authorization header for JWT using {securityDefinition} scheme.",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = $"{securityDefinition}",
+                    Reference = new OpenApiReference
+                    {
+                        Id = $"{securityDefinition}",
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+                
+                options.AddSecurityDefinition(securityDefinition, scheme);
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {scheme, new List<string>()}
+                });
+            });
+
             services.AddEndpointsApiExplorer();
         }
-        
-        
-        
+
+
         return services;
     }
 }

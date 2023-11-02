@@ -9,6 +9,7 @@
         <Description>This package adds support for core logic.</Description>
         <PackageProjectUrl>https://github.com/FamilySync/core-services</PackageProjectUrl>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.0.5</Version>
     </PropertyGroup>
 
     <ItemGroup>

@@ -2,19 +2,19 @@
 
 namespace FamilySync.Core.Authentication.Models;
 
-public class IdentityData
+public class ClaimDefinition
 {
-    static List<IdentityData>? _identities;
+    static List<ClaimDefinition>? _definitions;
 
-    public static List<IdentityData> Data
+    public static List<ClaimDefinition> Definitions
     {
         get
         {
-            return _identities ??= IdentityDefinitions.Build();
+            return _definitions ??= ClaimDefinitions.Build();
         }
     }
 
-    public string Identity { get; init; } = default!;
+    public string Claim { get; init; } = default!;
     public string Description { get; init; } = default!;
     public string Name { get; init; } = default!;
     public string Policy { get; init; } = default!;

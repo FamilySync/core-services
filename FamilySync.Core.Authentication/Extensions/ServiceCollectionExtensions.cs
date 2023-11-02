@@ -1,4 +1,5 @@
-﻿using FamilySync.Core.Authentication.Handler;
+﻿using System.Text;
+using FamilySync.Core.Authentication.Handler;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,14 +15,13 @@ public static class ServiceCollectionExtensions
         {
             options.AddFamilySyncPolicies();
         });
-
+        
         services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultForbidScheme = JwtBearerDefaults.AuthenticationScheme;
-
             })
             .AddJwtBearer(options =>
             {
@@ -32,13 +32,15 @@ public static class ServiceCollectionExtensions
                     ValidateIssuerSigningKey = true,
                     ValidateIssuer = false,
                     ValidateAudience = false,
+                    IssuerSigningKey = key,
                     ClockSkew = TimeSpan.FromSeconds(30)
                 };
-                
+
                 jwtOptions?.Invoke(options);
             });
 
         services.AddSingleton<IAuthorizationHandler, AccessLevelHandler>();
+
         return services;
     }
 }

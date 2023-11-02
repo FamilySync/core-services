@@ -16,7 +16,7 @@ public class ExampleController : ControllerBase
         _service = service;
     }
 
-    [Authorize]
+    [Authorize("famsync:readonly")]
     [HttpGet("example")]
     [ProducesResponseType(200)]
     public ActionResult<string> Example([FromQuery] string name)

@@ -12,7 +12,7 @@ public static class AuthorizationOptionsExtensions
     {
         var accessLevels = Enum.GetValues<AccessLevel>();
 
-        foreach (var data in IdentityData.Data)
+        foreach (var data in ClaimDefinition.Definitions)
         {
             if(string.IsNullOrEmpty(data.Policy))
             {
@@ -25,7 +25,7 @@ public static class AuthorizationOptionsExtensions
                 {
                     policyBuilder.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
                     policyBuilder.RequireAuthenticatedUser();
-                    policyBuilder.AddRequirements(new AccessLevelRequirement(data.Identity, level));
+                    policyBuilder.AddRequirements(new AccessLevelRequirement(data.Claim, level));
                 });
             }
         }
